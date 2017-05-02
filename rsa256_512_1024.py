@@ -23,8 +23,16 @@ def main():
 
 
 def use_specific_key():
+    random_generator = Random.new().read
+    key = RSA.generate(1024, random_generator)
+    public_key = key.publickey().exportKey("PEM") 
+    private_key = key.exportKey("PEM") 
+    import ipdb;ipdb.set_trace();
     pass
 
 
 if __name__ == "__main__":
     main()
+    use_specific_key()
+
+
