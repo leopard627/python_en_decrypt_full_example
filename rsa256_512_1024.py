@@ -22,7 +22,8 @@ def main():
     print(key.decrypt(enc_data))
 
 
-
+def use_specific_key():
+    pass
 
 
 if __name__ == "__main__":
