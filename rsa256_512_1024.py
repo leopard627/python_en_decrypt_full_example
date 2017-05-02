@@ -41,12 +41,35 @@ def generate_RSA(bits=2048):
     public_key = new_key.publickey().exportKey("PEM") 
     private_key = new_key.exportKey("PEM") 
 
-    # return tuple (private_key, public_key)
-    return private_key, public_key
+    print('+'*50)
+    quotes = "hack me up"
+    print('quotes --> {}'.format(quotes))
+    encrypted_quotes = new_key.encrypt(quotes, 32)
+    print('after encrypt --> {}'.format(encrypted_quotes))
+    print('+'*50)
 
+    # return tuple (private_key, public_key)
+    return private_key, public_key, encrypted_quotes
+
+def todo_rsa_example():
+    # let's get_RSA key_pairs
+    key_pairs = generate_RSA()
+    # [0]  private_key
+    # [1]  public_key
+    # [2]  encryped_quotes 
+
+    # use private_key 
+    rsakey = RSA.importKey(key_pairs[0])
+
+    # export it again LOL
+    print(rsakey.exportKey('PEM'))
+
+    print('+'*50)
+    print('before decrypt --> {}'.format(key_pairs[2]))
+    print('after decrypt --> {}'.format(rsakey.decrypt(key_pairs[2])))
+    print('+'*50)
 
 if __name__ == "__main__":
     main()
     use_specific_key()
-    print (generate_RSA())
-
+    todo_rsa_example()
